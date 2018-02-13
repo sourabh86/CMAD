@@ -25,3 +25,5 @@
 * Any user/visitor can search for a blog
 * Comments only by logged in people.
 * Author should be able to edit a blog
+* Created time of blogs and any comments followed by  should be shown 
+ 
