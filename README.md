@@ -13,6 +13,8 @@
 - GET /api/comments?blogId={id} {Gets all the comments for this blog post}
 - POST /api/comments {Post a new comment to a blog. Accepts userId and comment data as params}
 - DELETE /api/comments?id={id} {Delete the comment with given ID.should we give an option to delete a comment right now?}
+- PUT /api/user?id={id}/upate User can update his profile 
+
 # Mockup Screens
 
 
