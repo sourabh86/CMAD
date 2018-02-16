@@ -2,9 +2,9 @@
 # Architecture
 # Rest APIs
 - POST /api/user {Creates a new user with provided data. Needs Username and email to create a new user}
-- GET /api/user?id={id} {Gets details of the the user with provided id}
+- GET /api/user/{userId} {Gets details of the the user with provided id}
 - POST /api/login {logs in a user with credentials provided as params. This should just create a JWT token and respond.}
-- GET /api/posts?username={username} {Gets most recent posts by the user. All posts if no username is supplied. Should we accept userid or username for this?}
+- GET /api/user/{userId}/posts{Gets most recent posts by the user. All posts if no username is supplied. Should we accept userid or username for this?}
 - POST /api/post {Submit a new blog entry. Accepts username,title,tags and blogData as params}
 - GET /api/posts?id={id} {Gets the blog with provided id}
 - GET /api/posts?key={searchTerm} {get a list of blogs containing the searchTerm in title/content}
