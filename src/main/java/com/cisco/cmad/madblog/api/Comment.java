@@ -2,9 +2,11 @@ package com.cisco.cmad.madblog.api;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Comment {
@@ -14,6 +16,7 @@ public class Comment {
 	
 	private String content;
 	
+	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
 	private Date creationDate;

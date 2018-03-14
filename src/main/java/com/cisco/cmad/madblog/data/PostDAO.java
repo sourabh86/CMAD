@@ -11,5 +11,6 @@ public interface PostDAO {
 	List<Post> search(String key);
 	Post getPost(int postId);
 	List<Post> getUserPosts(int userId);
+	List<Post> getAllPosts();
 
 }

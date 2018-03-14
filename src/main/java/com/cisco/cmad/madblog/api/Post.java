@@ -3,9 +3,12 @@ package com.cisco.cmad.madblog.api;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Post {
@@ -21,8 +24,10 @@ public class Post {
 	
 	private Date lastUpdated;
 	
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<Comment> comments;
 	
+	@OneToOne(cascade = CascadeType.ALL)
 	private User author;
 	
 	public int getPostId() {

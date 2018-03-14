@@ -17,17 +17,24 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.cisco.cmad.madblog.api.BlogException;
+import com.cisco.cmad.madblog.api.BlogManager;
 import com.cisco.cmad.madblog.api.Post;
 import com.cisco.cmad.madblog.api.User;
+import com.cisco.cmad.madblog.api.UserManager;
+import com.cisco.cmad.madblog.business.MADBlogManager;
+import com.cisco.cmad.madblog.business.MADUserManager;
 
 @Path("/v1")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces({ MediaType.APPLICATION_JSON })
 public class PostRootResource {
 	
+	BlogManager blogManager  = new MADBlogManager();
+	UserManager userManager = new MADUserManager();
+	
 	@GET
 	@Path("/posts")
-	public Response getRecentPosts( ) {
+	public Response getAllPosts( ) {
 		try {
 			List<Post> posts = new ArrayList<>();
 			for(int i=0;i<10;i++){
@@ -43,7 +50,7 @@ public class PostRootResource {
 				posts.add(post);
 			}
 			
-			//List<Post> recentPosts = posts.getRecentPosts(10);
+			//List<Post> recentPosts = blogManager.getAllPosts(10);
 			return Response.ok().entity(posts).build();
 		} catch (Exception e) {
 			throw new BlogException();
@@ -55,7 +62,7 @@ public class PostRootResource {
 	@Path("/posts/{postId}")
 	public Response getPost( @PathParam("postId") int postId) {
 		try {
-			//Post specificPost = posts.getPost(postId);
+			//Post specificPost = blogManager.getPost(postId);
 			Post post = new Post();
 			StringBuilder contentBuilder = new StringBuilder();
 			for(int i=0;i<200;i++){
@@ -77,6 +84,38 @@ public class PostRootResource {
 			throw new BlogException();
 		}
 
+	}
+	
+	@POST
+	@Path("/users/{userId}/posts")
+	public Response addPost ( @PathParam("userId") int userId, Post post) {
+		try {
+			User author = userManager.getUserProfile(userId);
+			post.setAuthor(author);
+			blogManager.createPost(post);
+			return Response.created(new URI(post.getPostId() + "")).build();
+		} catch (Exception e) {
+			throw new BlogException();
+		}
+
+	}
+	
+	@POST
+	@Path("/users")
+	public Response addUser( User user) {
+		try {
+			userManager.createUser(user);
+			return Response.created(new URI(user.getId() + "")).build();
+		} catch (Exception e) {
+			throw new BlogException();
+		}
+	}
+	
+	@GET
+	@Path("/users/{userId}")
+	public Response getUser ( @PathParam("userId") int userId) {
+		User user = userManager.getUserProfile(userId);
+		return Response.ok().entity(user).build();
 	}
 
 }
