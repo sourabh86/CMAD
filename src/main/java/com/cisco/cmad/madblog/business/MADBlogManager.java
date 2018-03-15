@@ -36,7 +36,7 @@ public class MADBlogManager implements BlogManager {
 
 	@Override
 	public Post getPostById(int postId) {
-		return null;
+		return postDao.getPost(postId);
 	}
 
 	@Override

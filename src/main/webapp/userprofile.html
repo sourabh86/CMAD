@@ -48,35 +48,34 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        	<h3>Create new post</h3>
-        	<form name="sentMessage" id="contactForm" novalidate>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Title</label>
-                <input type="text" class="form-control" placeholder="Title" id="title" required data-validation-required-message="Please enter blog title.">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Categories</label>
-                <input type="text" class="form-control" placeholder="Categories" id="categories">
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <div class="control-group">
-              <div class="form-group floating-label-form-group controls">
-                <label>Blog Content</label>
-                <textarea rows="5" class="form-control" placeholder="Blog Content" id="content" required data-validation-required-message="Please enter some content for the blog."></textarea>
-                <p class="help-block text-danger"></p>
-              </div>
-            </div>
-            <br>
-            <div id="success"></div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary" id="sendMessageButton">Publish</button>
-            </div>
-          </form>
+        	<h3>User Profile</h3><br>
+        	<div>
+        		<div class="form-group floating-label-form-group controls">
+        			<h4>Name:</h4>
+        			<input type="text" placeholder="Name" id="name">
+        		</div>
+        		<div class="form-group floating-label-form-group controls">
+        			<h4>Email:</h4>
+        			<input type="email" placeholder="Email Address" id="email">
+        		</div>
+        		<div class="form-group floating-label-form-group controls">
+        			<h4>Current Password:</h4>
+        			<input type="password" placeholder="Current Password" id="currentPassword">
+        		</div>
+        		<div class="form-group floating-label-form-group controls">
+        			<h4>New Password:</h4>
+        			<input type="password" placeholder="New Password" id="newPassword">
+        		</div>
+        		<div class="form-group floating-label-form-group controls">
+        			<h4>Confirm New Password:</h4>
+        			<input type="password" placeholder="Confirm New Password" id="confirmNewPassword">
+        		</div>
+        		<br>
+        		<div id="success"></div>
+	            <div class="form-group">
+	              <button type="submit" class="btn btn-primary" id="updateButton">Update</button>
+	            </div>
+        	</div>
         </div>
       </div>
     </div>
@@ -93,31 +92,29 @@
     <script src="js/clean-blog.min.js"></script>
     
     <script type="text/javascript">
+	    var getUrlParameter = function getUrlParameter(sParam) {
+		    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		        sURLVariables = sPageURL.split('&'),
+		        sParameterName,
+		        i;
+	
+		    for (i = 0; i < sURLVariables.length; i++) {
+		        sParameterName = sURLVariables[i].split('=');
+	
+		        if (sParameterName[0] === sParam) {
+		            return sParameterName[1] === undefined ? true : sParameterName[1];
+		        }
+		    }
+		};
 		$(document).ready(function(){
 			$(function(){
 			      $("#navigation").load("navigation.html");
 			      $("#footer").load("footer.html");
 		    });
-			
-			$('#contactForm').on('submit',function(e){
-				e.preventDefault(); 
-				var title = $("#title").val();
-				var content = $("#content").val();
-				var data = {title:title,content:content};
-				
-				$.ajax({
-				    url:'api/v1/users/7/posts/',
-				    type:'POST',
-				    data: JSON.stringify(data),
-				    dataType: 'text',
-				    contentType: "application/json; charset=utf-8",
-				    success:function(res){
-				        alert("it works!");
-				    },
-				    error:function(res){
-				        alert("Failed to publish post." + res.statusText);
-				    }
-				});
+			var userId = getUrlParameter("userId");
+			$.get("api/v1/users/"+userId,function(user){
+				$('#name').val(user.name);
+				$('#email').val(user.email);
 			});
 			
 		});

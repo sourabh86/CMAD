@@ -62,24 +62,24 @@ public class PostRootResource {
 	@Path("/posts/{postId}")
 	public Response getPost( @PathParam("postId") int postId) {
 		try {
-			//Post specificPost = blogManager.getPost(postId);
-			Post post = new Post();
-			StringBuilder contentBuilder = new StringBuilder();
-			for(int i=0;i<200;i++){
-				contentBuilder.append("This is post content.");
-				if(i%50==0){
-					contentBuilder.append("</p><p>");
-				}
-			}
-			post.setContent(contentBuilder.toString());
-			post.setTitle("This is post title:"+postId);
-			post.setCreateDate(new Date());
-			post.setPostId(postId);
-			User author = new User();
-			author.setEmail("user@email.com");
-			author.setName("Test Author");
-			post.setAuthor(author);
-			return Response.ok().entity(post).build();
+			Post specificPost = blogManager.getPostById(postId);
+//			Post post = new Post();
+//			StringBuilder contentBuilder = new StringBuilder();
+//			for(int i=0;i<200;i++){
+//				contentBuilder.append("This is post content.");
+//				if(i%50==0){
+//					contentBuilder.append("</p><p>");
+//				}
+//			}
+//			post.setContent(contentBuilder.toString());
+//			post.setTitle("This is post title:"+postId);
+//			post.setCreateDate(new Date());
+//			post.setPostId(postId);
+//			User author = new User();
+//			author.setEmail("user@email.com");
+//			author.setName("Test Author");
+//			post.setAuthor(author);
+			return Response.ok().entity(specificPost).build();
 		} catch (Exception e) {
 			throw new BlogException();
 		}
@@ -95,6 +95,7 @@ public class PostRootResource {
 			blogManager.createPost(post);
 			return Response.created(new URI(post.getPostId() + "")).build();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BlogException();
 		}
 
