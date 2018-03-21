@@ -1,0 +1,19 @@
+Article {
+  "title" : "Hello World",
+  "user_id" : 12345,
+  "title" : 'My test article',
+  "category" : ["cisco","techical","cloud"],
+  "content" : "This is a blog that has lots of data",
+  "created_time" : "21/05/2000 2:45 PM",
+  "modified_time" : "22/05/2000 3:45 PM",
+  "comments" : [
+    { 'text' : 'blah', 'user_id' : 654321},
+    { 'text' : 'foo', 'user_id' : 987654 }
+  ]
+}
+
+User {
+	"username" : "test",
+	"password" : "test",
+	"email" : "test@test.com"
+}
