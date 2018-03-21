@@ -25,3 +25,7 @@ target/
 .classpath
 .project
 .settings/
+
+npm_modules
+
+.DS_Store
