@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
+import axios from 'axios';
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap';
 
 function FieldGroup({ id, label, help, ...props }) {
@@ -23,7 +24,25 @@ class NewPost extends Component{
         }
         this.titleChange = this.titleChange.bind(this);
         this.contentChange = this.contentChange.bind(this);
+        this.submitPost = this.submitPost.bind(this);
         
+    }
+
+    submitPost(e){
+        e.preventDefault();
+        console.log({"title":this.state.title,"content":this.state.content});
+        axios.post('/MADBlog/api/v1/users/1/posts/', {"title":this.state.title,
+            "content":this.state.content})
+        .then(function (response) {
+            console.log(response);
+            this.setState({"title":"","content":""});
+            //TODO: a successful response should have the url for 
+            //the newly created blog. Take it out and go that page.
+        })
+        .catch(function (error) {
+            alert('Failed to create new post. Please try again later');
+            console.error("Error in creating post--"+error);
+        });
     }
     titleChange(e){
         this.setState({title:e.target.value})
@@ -39,7 +58,7 @@ class NewPost extends Component{
                 <div className="row">
                     <div className="col-lg-8 col-md-8 mx-auto text-left">
                         <h1>New Post</h1><br/>
-                        <form>
+                        <form onSubmit={this.submitPost}>
                             <FieldGroup id="title" type="text" label="Post Title"
                                 value={this.state.title}
                                 placeholder="Title"
@@ -48,6 +67,7 @@ class NewPost extends Component{
                                 componentClass="textarea"
                                 value={this.state.content}
                                 placeholder="Post Content"
+                                rows="10"
                                 onChange={this.contentChange}/>
                             <Button type="submit">Submit</Button>
                             

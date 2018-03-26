@@ -7,11 +7,17 @@ function RightMenu(props){
                 ?
                 <NavDropdown eventKey={1} title="User" id="basic-nav-dropdown">
                     <MenuItem eventKey={1.1}>My Posts</MenuItem>
-                    <MenuItem eventKey={1.2}>New Post</MenuItem>
+                    <MenuItem eventKey={1.2}>
+                        <Link to="/newpost">New Post</Link>
+                    </MenuItem>
                     <MenuItem divider />
-                    <MenuItem eventKey={1.3}>Settings</MenuItem>
+                    <MenuItem eventKey={1.3}>
+                        <Link to="/settings">Settings</Link>
+                    </MenuItem>
                     <MenuItem divider />
-                    <MenuItem eventKey={1.4}>Sign Out</MenuItem>
+                    <MenuItem eventKey={1.4}>
+                        <Link to="/login">Sign Out</Link>
+                    </MenuItem>
                 </NavDropdown>
                 :
                 <NavItem eventKey={2} href="#Login">
