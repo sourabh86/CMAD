@@ -30,7 +30,7 @@ import com.cisco.cmad.madblog.business.MADUserManager;
 public class PostRootResource {
 	
 	BlogManager blogManager  = new MADBlogManager();
-	UserManager userManager = new MADUserManager();
+	//UserManager userManager = new MADUserManager();
 	
 	@GET
 	@Path("/posts")
@@ -90,12 +90,15 @@ public class PostRootResource {
 	@Path("/users/{userId}/posts")
 	public Response addPost ( @PathParam("userId") int userId, Post post) {
 		try {
-			User author = userManager.getUserProfile(userId);
-			post.setAuthor(author);
+			//User author = userManager.getUserProfile(userId);
+			//post.setAuthor(author);
+			System.out.println("test1");
 			blogManager.createPost(post);
 			return Response.created(new URI(post.getPostId() + "")).build();
 		} catch (Exception e) {
+			System.out.println("************");
 			e.printStackTrace();
+			System.out.println("************");
 			throw new BlogException();
 		}
 
@@ -105,18 +108,18 @@ public class PostRootResource {
 	@Path("/users")
 	public Response addUser( User user) {
 		try {
-			userManager.createUser(user);
+			//userManager.createUser(user);
 			return Response.created(new URI(user.getId() + "")).build();
 		} catch (Exception e) {
 			throw new BlogException();
 		}
 	}
 	
-	@GET
-	@Path("/users/{userId}")
-	public Response getUser ( @PathParam("userId") int userId) {
-		User user = userManager.getUserProfile(userId);
-		return Response.ok().entity(user).build();
-	}
+	//@GET
+	//@Path("/users/{userId}")
+	//public Response getUser ( @PathParam("userId") int userId) {
+		//User user = userManager.getUserProfile(userId);
+		//return Response.ok().entity(user).build();
+	//}
 
 }

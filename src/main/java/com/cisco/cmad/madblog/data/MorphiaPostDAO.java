@@ -24,6 +24,7 @@ public class MorphiaPostDAO extends BasicDAO<Post, ObjectId>implements PostDAO {
 
 	@Override
 	public void createPost(Post post) {
+		System.out.println("test2");
 	
 		save(post);
 		// TODO Auto-generated method stub

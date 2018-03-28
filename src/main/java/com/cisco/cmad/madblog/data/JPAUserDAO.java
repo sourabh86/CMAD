@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JPAUserDAO implements UserDAO {
-
+	
 	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("madblog");
 	private EntityManager em = emf.createEntityManager();
 
@@ -25,13 +25,13 @@ public class JPAUserDAO implements UserDAO {
 	@Override
 	public void editUser(User user) {
 	}
-
-	private static final String GET_USER_BY_ID = "Select user FROM User user WHERE user.id = :id";
+	
+	private static final String GET_USER_BY_ID = 
+			"Select user FROM User user WHERE user.id = :id" ;
 
 	@Override
 	public User getUserProfile(int userId) {
-		List<User> userList = em.createQuery(GET_USER_BY_ID, User.class).setParameter("id", (long) userId)
-				.getResultList();
+		List<User> userList = em.createQuery(GET_USER_BY_ID, User.class).setParameter("id", (long)userId).getResultList();
 		return userList.get(0);
 	}
 

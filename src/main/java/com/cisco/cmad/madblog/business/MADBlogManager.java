@@ -14,15 +14,18 @@ import com.mongodb.MongoClient;
 
 public class MADBlogManager implements BlogManager {
 	MongoClient mongoClient = new MongoClient("127.0.0.1:27017");
-	String databaseName = "learningMongo";
+	String databaseName = "learningmongo";
 	Morphia morphia = new Morphia(); 
 	Datastore ds = morphia.createDatastore(mongoClient,databaseName);
 	MorphiaPostDAO temp = new MorphiaPostDAO(Post.class, ds);
 	
 	@Override
 	public void createPost(Post post) {
-		if (post != null && post.getAuthor() != null) {
+		System.out.println(post);
+		if (post != null) {
+			System.out.println(("test3"));
 			if (!(post.getTitle().trim().length() == 0)) {
+				System.out.println("test4");
 				temp.createPost(post);
 			} else {
 				throw new BlogException();

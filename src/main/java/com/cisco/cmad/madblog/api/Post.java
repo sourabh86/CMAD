@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import org.mongodb.morphia.annotations.Entity;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
@@ -36,6 +35,7 @@ public class Post {
 		this.content = content;
 		this.createDate = createDate;
 		this.lastUpdated = lastUpdated;
+	
 	}
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
