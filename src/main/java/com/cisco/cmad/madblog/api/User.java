@@ -1,8 +1,9 @@
 package com.cisco.cmad.madblog.api;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Entity;
+
 
 @Entity
 public class User {

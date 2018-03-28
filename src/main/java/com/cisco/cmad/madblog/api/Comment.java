@@ -3,7 +3,7 @@ package com.cisco.cmad.madblog.api;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
+import org.mongodb.morphia.annotations.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

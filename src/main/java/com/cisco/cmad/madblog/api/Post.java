@@ -4,14 +4,16 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.mongodb.morphia.annotations.Entity;
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
-@Entity
+@Entity("post")
 public class Post {
 	
 	@Id @GeneratedValue
@@ -24,6 +26,17 @@ public class Post {
 	private Date createDate;
 	
 	private Date lastUpdated;
+	public Post(){
+		
+	}
+	public Post(String title, String content, Date createDate,
+			Date lastUpdated) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.createDate = createDate;
+		this.lastUpdated = lastUpdated;
+	}
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Comment> comments;
