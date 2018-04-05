@@ -13,7 +13,7 @@ import com.cisco.cmad.madblog.data.MorphiaPostDAO;
 import com.mongodb.MongoClient;
 
 public class MADBlogManager implements BlogManager {
-	MongoClient mongoClient = new MongoClient("127.0.0.1:27017");
+	MongoClient mongoClient = new MongoClient("10.0.2.211:27017");
 	String databaseName = "learningmongo";
 	Morphia morphia = new Morphia(); 
 	Datastore ds = morphia.createDatastore(mongoClient,databaseName);
