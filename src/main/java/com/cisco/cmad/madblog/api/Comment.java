@@ -3,21 +3,25 @@ package com.cisco.cmad.madblog.api;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
-import org.mongodb.morphia.annotations.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 @Entity
 public class Comment {
 
-	@Id @GeneratedValue
+	//@Id @GeneratedValue
+	@Id
 	private long id;
 	
 	private String content;
 	
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	//@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@Reference
 	private User user;
 	
 	private Date creationDate;

@@ -51,19 +51,19 @@ public class JPAPostDAO implements PostDAO {
 		return null;
 	}
 
-	@Override
-	public Post getPost(int postId) {
-		Post post = em.createQuery(GET_POST_BY_ID, Post.class)
-				.setParameter("postId", postId)
-				.getSingleResult();
-		return post;
-	}
+//	@Override
+//	public Post getPost(int postId) {
+//		Post post = em.createQuery(GET_POST_BY_ID, Post.class)
+//				.setParameter("postId", postId)
+//				.getSingleResult();
+//		return post;
+//	}
 
-	@Override
-	public List<Post> getUserPosts(int userId) {
-		return em.createQuery(GET_ALL_POST_BY_USER, Post.class)
-				.setParameter("userId", userId+"").getResultList();
-	}
+//	@Override
+//	public List<Post> getUserPosts(int userId) {
+//		return em.createQuery(GET_ALL_POST_BY_USER, Post.class)
+//				.setParameter("userId", userId+"").getResultList();
+//	}
 
 	@Override
 	public List<Post> getAllPosts() {
@@ -247,6 +247,16 @@ public class JPAPostDAO implements PostDAO {
 	@Override
 	public UpdateResults updateFirst(Query<Post> arg0, UpdateOperations<Post> arg1) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Post getPost(ObjectId postId) {
+		return null;
+	}
+
+	@Override
+	public List<Post> getUserPosts(ObjectId userId) {
 		return null;
 	}
 

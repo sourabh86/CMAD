@@ -25,24 +25,27 @@ class NewPost extends Component{
         this.titleChange = this.titleChange.bind(this);
         this.contentChange = this.contentChange.bind(this);
         this.submitPost = this.submitPost.bind(this);
-        
+        this.setTextBoxToDefault = this.setTextBoxToDefault.bind(this);
     }
 
     submitPost(e){
         e.preventDefault();
+        const that = this;
         console.log({"title":this.state.title,"content":this.state.content});
-        axios.post('/MADBlog/api/v1/users/1/posts/', {"title":this.state.title,
+        axios.post('http://localhost:8080/MADBlog/api/v1/users/5adaa6b930a70e3ded958070/posts/', {"title":this.state.title,
             "content":this.state.content})
         .then(function (response) {
             console.log(response);
-            this.setState({"title":"","content":""});
-            //TODO: a successful response should have the url for 
-            //the newly created blog. Take it out and go that page.
+            alert('Post successfuly created');
+            that.setTextBoxToDefault();
         })
         .catch(function (error) {
             alert('Failed to create new post. Please try again later');
             console.error("Error in creating post--"+error);
         });
+    }
+    setTextBoxToDefault(){
+        this.setState({"title":"","content":""});
     }
     titleChange(e){
         this.setState({title:e.target.value})

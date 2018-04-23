@@ -13,8 +13,8 @@ public interface PostDAO extends DAO<Post, ObjectId> {
 	void createPost(Post post);
 	void editPost(Post post);
 	List<Post> search(String key);
-	Post getPost(int postId);
-	List<Post> getUserPosts(int userId);
+	Post getPost(ObjectId postId);
+	List<Post> getUserPosts(ObjectId userId);
 	List<Post> getAllPosts();
 
 }

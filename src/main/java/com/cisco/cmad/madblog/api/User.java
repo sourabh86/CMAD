@@ -1,14 +1,17 @@
 package com.cisco.cmad.madblog.api;
 
-import javax.persistence.GeneratedValue;
 import org.mongodb.morphia.annotations.Id;
+import org.bson.types.ObjectId;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.mongodb.morphia.annotations.Entity;
 
 
-@Entity
+@Entity("user")
 public class User {
-	@Id @GeneratedValue
-	private long id;
+	
+	@Id
+	@JsonSerialize(using = CustomObjIdSerializer.class)
+	private ObjectId id;
 	
 	private String email;
 	
@@ -40,11 +43,11 @@ public class User {
 		this.password = password;
 	}
 
-	public long getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 	

@@ -11,12 +11,11 @@ import org.mongodb.morphia.query.Query;
 import com.mongodb.MongoClient;
 
 import com.cisco.cmad.madblog.api.Post;
+import com.cisco.cmad.madblog.api.User;
 
 
-public class MorphiaPostDAO extends BasicDAO<Post, ObjectId>implements PostDAO {
+public class MorphiaPostDAO extends BasicDAO<Post, ObjectId> implements PostDAO {
 	
-
-
 	public MorphiaPostDAO(Class<Post> entityClass, Datastore ds) {
 		super(entityClass, ds);
 		// TODO Auto-generated constructor stub
@@ -24,10 +23,7 @@ public class MorphiaPostDAO extends BasicDAO<Post, ObjectId>implements PostDAO {
 
 	@Override
 	public void createPost(Post post) {
-		System.out.println("test2");
-	
 		save(post);
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -44,21 +40,21 @@ public class MorphiaPostDAO extends BasicDAO<Post, ObjectId>implements PostDAO {
 	}
 
 	@Override
-	public Post getPost(int postId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Post getPost(ObjectId postId) {
+		Query<Post> query = createQuery().field("id").equal(postId);
+		return query.get();
 	}
 
 	@Override
-	public List<Post> getUserPosts(int userId) {
-		// TODO Auto-generated method stub
+	public List<Post> getUserPosts(ObjectId userId) {
+//		Query<Post> query = createQuery().field("id").equal(postId);
+//		return query.get;
 		return null;
 	}
 
 	@Override
 	public List<Post> getAllPosts() {
-		// TODO Auto-generated method stub
-		return null;
+		return find().asList();
 	}
 
 

@@ -14,18 +14,21 @@ class App extends Component {
     }
   }
 
-  // componentDidMount(){
-  //   fetch("/MADBlog/api/v1/posts/").then((response)=>{
-  //     return response.json();
-  //   }).then((posts)=>{
-  //     this.setState({posts})
-  //   })
-  // }
+  componentDidMount(){
+    
+    //fetch("http://54.218.245.216:8080/MADBlog/api/v1/posts/",{
+    const options = {headers: new Headers({'Access-Control-Allow-Origin':'*'})};
+    fetch("http://localhost:8080/MADBlog/api/v1/posts/").then((response)=>{
+      return response.json();
+    }).then((posts)=>{
+      this.setState({posts})
+    })
+  }
   
   render() {
     return (
       <div className="App">
-        <Navigation loggedIn={false}/>
+        <Navigation loggedIn={true}/>
         
         <div className="container">
             <div className="row">

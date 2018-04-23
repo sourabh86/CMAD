@@ -8,15 +8,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import org.bson.types.ObjectId;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 @Entity("post")
 public class Post {
 	
-	@Id @GeneratedValue
-	private int id;
+	@Id
+	@JsonSerialize(using = CustomObjIdSerializer.class)
+	private ObjectId id;
 	
 	private String title;
 	
@@ -25,9 +29,15 @@ public class Post {
 	private Date createDate;
 	
 	private Date lastUpdated;
-	public Post(){
-		
-	}
+	
+	@Reference
+	private List<Comment> comments;
+	
+	@Reference
+	private User author;
+	
+	public Post(){}
+	
 	public Post(String title, String content, Date createDate,
 			Date lastUpdated) {
 		super();
@@ -38,17 +48,11 @@ public class Post {
 	
 	}
 	
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private List<Comment> comments;
-	
-	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	private User author;
-	
-	public int getPostId() {
+	public ObjectId getPostId() {
 		return id;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(ObjectId postId) {
 		this.id = postId;
 	}
 
