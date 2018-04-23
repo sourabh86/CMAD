@@ -12,7 +12,7 @@ import NewPost from './components/NewPost';
 
 //ReactDOM.render(<App />, document.getElementById('root'));
 ReactDOM.render(
-    <HashRouter baseName="/">
+    <HashRouter baseName="/MADBlog">
         <div>
             <Route exact path="/" component={App}/>
             <Route exact path='/post/:postId' component={Post}/>
@@ -22,4 +22,4 @@ ReactDOM.render(
         </div>
     </HashRouter>
 , document.getElementById('root'))
-registerServiceWorker();
+//registerServiceWorker();

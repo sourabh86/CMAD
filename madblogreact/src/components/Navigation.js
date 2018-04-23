@@ -8,15 +8,15 @@ function RightMenu(props){
                 <NavDropdown eventKey={1} title="User" id="basic-nav-dropdown">
                     <MenuItem eventKey={1.1}>My Posts</MenuItem>
                     <MenuItem eventKey={1.2}>
-                        <Link to="/newpost">New Post</Link>
+                        <Link to={`/newpost`}>New Post</Link>
                     </MenuItem>
                     <MenuItem divider />
                     <MenuItem eventKey={1.3}>
-                        <Link to="/settings">Settings</Link>
+                        <Link to={`/settings`}>Settings</Link>
                     </MenuItem>
                     <MenuItem divider />
                     <MenuItem eventKey={1.4}>
-                        <Link to="/login">Sign Out</Link>
+                        <Link to={`/login`}>Sign Out</Link>
                     </MenuItem>
                 </NavDropdown>
                 :
@@ -33,7 +33,7 @@ export default class Navigation extends Component{
                 <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                    <a href="/">MADBlog</a>
+                    <a href="/MADBlog">MADBlog</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
