@@ -17,7 +17,7 @@ const Footer = (props)=>{
                 </a>
               </li>
             </ul>
-            <p className="copyright text-muted">Copyright &copy; MADBlog 2018</p>
+            <p className="copyright text-muted">Copyright &copy; MADBlog-2018</p>
           </div>
         </div>
         </div>

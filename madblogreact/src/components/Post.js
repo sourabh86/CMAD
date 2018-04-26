@@ -13,7 +13,7 @@ class Post extends Component{
         }
     }
     componentDidMount(){
-        fetch(`http://localhost:8080/MADBlog/api/v1/posts/${this.props.match.params.postId}`).then((response)=>{
+        fetch(`http://52.38.61.62:8080/MADBlog/api/v1/posts/${this.props.match.params.postId}`).then((response)=>{
             return response.json();
         }).then((post)=>{
             this.setState({post})

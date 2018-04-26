@@ -32,7 +32,7 @@ class NewPost extends Component{
         e.preventDefault();
         const that = this;
         console.log({"title":this.state.title,"content":this.state.content});
-        axios.post('http://localhost:8080/MADBlog/api/v1/users/5adaa6b930a70e3ded958070/posts/', {"title":this.state.title,
+        axios.post('http://52.38.61.62:8080/MADBlog/api/v1/users/5ae1f474cf348049177963b5/posts/', {"title":this.state.title,
             "content":this.state.content})
         .then(function (response) {
             console.log(response);

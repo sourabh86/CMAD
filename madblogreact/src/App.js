@@ -15,10 +15,9 @@ class App extends Component {
   }
 
   componentDidMount(){
-    
     //fetch("http://54.218.245.216:8080/MADBlog/api/v1/posts/",{
     const options = {headers: new Headers({'Access-Control-Allow-Origin':'*'})};
-    fetch("http://localhost:8080/MADBlog/api/v1/posts/").then((response)=>{
+    fetch("http://52.38.61.62:8080/MADBlog/api/v1/posts/").then((response)=>{
       return response.json();
     }).then((posts)=>{
       this.setState({posts})
