@@ -6,7 +6,7 @@ phases:
       - echo Nothing to install, container image should have it all based on what we selected
   pre_build:
     commands:
-      - echo Just listing basic information about the environment
+      - echo Just listing basic information about the environment variables
       - which mvn
       - mvn -version
       - pwd
